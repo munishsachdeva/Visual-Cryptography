@@ -1,0 +1,25 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Result Page{% endblock %}
+
+{% block content %}
+  <h2 class="text-center">Result</h2>
+  <table class="table table-bordered table-sm text-center">
+    <thead>
+      <tr>
+        <th>Candidate Name</th>
+        <th>Candidate Position</th>
+        <th>Total Vote</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in obj %}
+        <tr>
+          <td>{{ i.name }}</td>
+          <td>{{ i.position }}</td>
+          <td>{{ i.total_vote }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <h2>User Login</h2>
+      <form action="." method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_username">Username:</label>
+          <input type="text" name="username" class="form-control" id="id_username" required>
+        </div>
+        <div class="form-group">
+          <label for="id_password">Password:</label>
+          <input type="password" name="password" class="form-control" id="id_password" required>
+        </div>
+
+        <input type="submit" class="btn btn-primary btn-sm" value="Login">
+      </form>
+    </div>
+
+{% endblock %}

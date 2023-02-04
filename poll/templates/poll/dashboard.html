@@ -1,0 +1,9 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <h2>Hi, {{request.user.get_full_name }}</h2>
+  <h3><a href="{% url 'position' %}">Click Here To Vote</a></h3>
+  <!--<h3><a href="{% url 'result' %}">Click Here To See Result</a></h3>-->
+{% endblock %}

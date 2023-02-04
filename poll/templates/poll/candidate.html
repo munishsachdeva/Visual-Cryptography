@@ -1,0 +1,36 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Candidate{% endblock %}
+
+{% block content %}
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <h2>Available Candidates of {{ obj.title }}</h2>
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for c in obj.candidate_set.all %}
+      <!-- <input type="radio" name="{{ c.position}}" value="{{c.id}}" required> <strong>{{c.name}} <a href="{% url 'detail' c.id %}">Detail</a></strong>
+     <br> -->
+     <div class="custom-control custom-radio">
+      <input type="radio" id="id_{{c.id}}" name="{{ c.position}}" value="{{c.id}}" class="custom-control-input" required>
+      <label class="custom-control-label" for="id_{{c.id}}">{{c.name}} <a href="{% url 'detail' c.id %}">Detail</a></label>
+    </div>
+    {% empty %}
+      <p>No Candidates Available</p>
+    {% endfor %}
+    <br>
+    <input type = "file" name = "upload" accept=".png">
+    <!-- <label for="files" style="background-color: whitesmoke;">Select file</label> -->
+    <br> 
+    <br><button type="submit"> VOTE </button>
+    <!-- <br><input type="submit" class="btn btn-outline-success btn-sm" value="VOTE"> -->
+  </form>
+  <br><p><a href="{% url 'position' %}">Back to Poll</a></p>
+{% endblock %}

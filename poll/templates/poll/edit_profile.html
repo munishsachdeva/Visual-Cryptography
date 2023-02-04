@@ -1,0 +1,33 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Update Profile{% endblock %}
+
+{% block content %}
+  {% load widget_tweaks %}
+  <div class="jumbotron">
+    <h2>Update Profile</h2>
+
+    <form action="" method="POST">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="form-group">
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <ul>
+                <li>{{error}}</li>
+              </ul>
+            {% endfor %}
+          {% endif %}
+          {{ field.label_tag }}
+          {% render_field field class="form-control" %}
+          {% if field.help_text %}
+            <small class="form-text text-muted">{{field.help_text}}</small>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <input type="submit" class="btn btn-primary btn-sm" value="Update">
+    </form>
+  </div>
+
+{% endblock %}

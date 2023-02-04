@@ -1,0 +1,18 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Online Voting System{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+  {% endif %}
+  <h1>Welcome to Online Voting System</h1>
+  <h3>This is a simple voting application for small organization.</h3>
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+  {% load widget_tweaks %}
+  <div class="jumbotron">
+    <h2>User Registration</h2>
+    {% if note %}
+      <h3 class="text text-muted">{{note}}</h3>
+    {% endif %}
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="form-group">
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <ul>
+                <li>{{error}}</li>
+              </ul>
+            {% endfor %}
+          {% endif %}
+          {{ field.label_tag }}
+          {% render_field field class="form-control" %}
+          {% if field.help_text %}
+            <small class="form-text text-muted">{{field.help_text}}</small>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+    </form>
+  </div>
+
+{% endblock %}
